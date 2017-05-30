@@ -1,0 +1,96 @@
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+TO-DO Primary:
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+TO-Do Secondary:
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+  ✅ spin in calendar @done(2017-02-02 10:55)
+  ✘ Problem deleting Cancellation policies and Children policies @cancelled(2017-02-01 12:54)
+  ✅ Add hotel ratings (stars or keys) @done(2017-02-01 16:29)
+  ✘ Amenities Extra charge to be selective (yes or no) for all amenities, not only the ones added manually @cancelled(2017-02-01 14:17)
+  ✅ Calendar pointers ( < ... >) to be bigger in size and should stand out more @done(2017-02-01 14:17)
+  ✅ In the pages where properties are created to add a search tab that would allow filter the existing properties per destination @done(2017-02-01 13:41)
+  ✅ Breadcrumbs (path) to be shown in the rate (Hotels name + Room type+ Season) @done(2017-02-01 15:51)
+  ✅ When clicking back from inside of any property and going back to the list of properties, the selected property (gray background) should be the one that the user clicked out of, not random one @done(2017-02-01 16:29)
+  ✅ Check if dateNonFormat in calendars and <= in calendar date creation to include last day of month @done(2017-02-01 13:43)
+  ✅ add rate problem when first login @done(2017-01-30 16:16)
+  ✅ add calendar css to roomier.gr @done(2017-01-30 16:16)
+  ✅ make onetourismo.eu talk to the new server @done(2017-01-30 12:16)
+  ✅ open new droplet @done(2017-01-25 14:39)
+  ✅ calendar dates (ask mr.panos) @done(2017-01-25 11:34)
+  ✅ delete rooms in new room @done(2017-01-25 09:50)
+  ✅ show charachter count in new property @done(2017-01-25 09:52)
+  ✅ buttons turn white on hover @done(2017-01-25 10:10)
+  ✅ remove dashboard @done(2017-01-24 09:53)
+  ✅ calendar select no text @done(2017-01-24 09:54)
+  ✅ Roomtype images @done(2017-01-24 11:45)
+  ✅ Edit in calendar @done(2017-01-23 16:45)
+  ✅ problem when uploading images @done(2017-01-23 15:25)
+  ✅ check dates of rate with moment @done(2017-01-23 12:13)
+  ✅ edit rates @done(2017-01-23 12:05)
+  ✅ cancelation policy: of the first night charge @done(2017-01-20 15:31)
+  ✅ add new date button to add more dates @done(2017-01-20 12:34)
+  ✅ meals extra pax charge @done(2017-01-20 13:10)
+  ✅ single use price @done(2017-01-20 16:46)
+  ✅ check dates in new rate @done(2017-01-20 17:30)
+  ✅ dont include base meal plan in children @done(2017-01-20 17:30)
+  ✅ add text (base meal plan in children) @done(2017-01-20 17:30)
+  ✅ + if free night no discount will be applied @done(2017-01-23 09:48) @project(Archive)
+  ✅ dashboard blank bage @done(2017-01-19 14:14)
+  ✅ change the /login route @done(2017-01-19 14:17)
+  ✅ cancelation policies alert not defined @done(2017-01-19 14:13)
+  ✅ show occupancy in new rate and new room @done(2017-01-19 16:38)
+  ✅ show images in images @done(2017-01-19 17:27)
+  ✅ special offer dates check @done(2017-01-17 16:37)
+  ✅ add free night (if number of nights >= nights 1 free night) @done(2017-01-17 16:08)
+  ✅ + minimum stay in offer (not required) @done(2017-01-17 12:50)
+  ✅ + cumulative yes/no @done(2017-01-17 12:53)
+  ✅ new rate myst run date functions on mount @done(2017-01-17 12:36)
+  ✅ delete rate error @done(2017-01-17 12:34)
+  ✅ Change the datepickers in new rate @done(2017-01-17 11:26)
+  ✅ rates from and to need space @done(2017-01-16 17:19)
+  ✅ Show dropdown of countries and currencies @done(2017-01-17 10:16)
+  ✅ router problem in sing up @done(2017-01-16 15:20)
+  ✅ sign in dashboard not loading background @done(2017-01-16 15:32)
+  ✅ login not redirecting user @done(2017-01-16 15:25)
+  ✅ in properties error when no properties have not been set up @done(2017-01-16 16:14)
+  ✅ property amenityies delete last problem  @done(2017-01-16 16:37)
+  ✅ massEdit @done(2017-01-16 13:48)
+  ✅ go back when dates has been edited @done(2017-01-16 14:24)
+  ✅ change color for stopSales @done(2017-01-16 14:34)
+  ✅ what happend when someone edits dates twice? @done(2017-01-16 14:47)
+  ✅ build the api for edit @done(2017-01-16 11:32)
+  ✅ make edit @done(2017-01-16 12:28)
+  ✅ there is a bug in the calendar after day data has been proceced @done(2017-01-13 17:27)
+  ✅ problem when special date range is in 2 rates @done(2017-01-13 14:23)
+  ✅ show all days of rate and special days @done(2017-01-09 17:10)
+  ✅ Stop sales for certain date @done(2017-01-10 10:53)
+  ✅ edit dates of rate @done(2017-01-10 12:23)
+  ✅ property pictures @done(2017-01-11 15:45)
+  ✅ change alotment @done(2017-01-09 13:26)
+  ✅ change price @done(2017-01-09 13:26)
+  ✅ change minimum stay @done(2017-01-09 13:26)
+  ✅ problem: clicking different rates @done(2017-01-09 17:10)
+  ✘ Show release in modal (alotment expires) @cancelled(2017-01-05 10:49)
+  ✅ Show alotment  @done(2017-01-04 14:22)
+  ✅ make bookings api @done(2017-01-04 14:22)
+  ✅ Add click events to items @done(2017-01-03 17:29)
+  ✅ When room type is deleted rates and offers must be deleted @done(2017-01-03 14:57)
+  ✅ When property is deleted everything associated with it must be deleted @done(2017-01-03 14:56)
+  ✅ Add groups to calendar @done(2017-01-03 12:02)
+  ✅ Check ajax calls if working @done(2017-01-03 12:02)
+  ✅ Some problem when reloading ajax @done(2017-01-03 14:04)
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Notes:
+ssh roomier@188.166.54.28
+  One tourismo - 2177146677
+  Api - 2110126296
+  nickppfts@gmail.com

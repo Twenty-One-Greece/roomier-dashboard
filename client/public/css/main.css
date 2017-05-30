@@ -1,0 +1,78 @@
+.logo-dashboard{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 8%;
+  margin-bottom: 10%;
+  width: 80%;
+}
+
+.list-item-green {
+    background: #26b99a;
+    color: white;
+    border-radius: 3px;
+    position: relative;
+    list-style: none;
+}
+
+.list-item-green p {
+  padding-top: 7px;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  color: white;
+}
+
+.list-item-green span {
+  padding-top: 7px;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  padding-right: 7px;
+
+  font-size: 25px;
+  color: black;
+}
+
+.list-item-blue {
+    background: #5bc0de;
+    color: white;
+    border-radius: 3px;
+    position: relative;
+    list-style: none;
+}
+
+.list-item-blue p {
+  padding-top: 7px;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  color: white;
+}
+
+.list-item-blue span {
+  padding-top: 7px;
+  padding-left: 12px;
+  padding-bottom: 7px;
+  padding-right: 7px;
+
+  font-size: 25px;
+  color: black;
+}
+
+.days {
+  width: 30%;
+  margin-bottom: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.cancelPolHeader {
+  margin-top: 10%;
+}
+
+.from-to{
+  color: red;
+}
+
+.pageHeader {
+  margin-left: 80%;
+}
