@@ -1,35 +1,42 @@
-import { observable }     from 'mobx';
-import axios              from 'axios';
-import { browserHistory } from 'react-router';
-import moment             from 'moment'
-import config             from '../../../../sharedFiles/Config.jsx';
+import { observable } from "mobx";
+import axios from "axios";
+import { browserHistory } from "react-router";
+import moment from "moment";
+import config from "../../../../sharedFiles/Config.jsx";
 
 class Store_Calendar {
   constructor() {
     // Vars for ajax calls
-    this.token = window.localStorage.token
-    this.userID = window.localStorage.id
-    this.headers = { headers: config.headers(this.token) }
+    this.token = window.localStorage.token;
+    this.userID = window.localStorage.id;
+    this.headers = { headers: config.headers(this.token) };
   }
 
   // Array to store info and deliver to the calendar
-  @observable data = {
-    days:[],
+  @observable
+  data = {
+    days: [],
     roomTypeID: null,
     loading: false
-  }
-  @observable monthIndex = moment()
-  @observable searchText = null
+  };
+  @observable monthIndex = moment();
+  @observable searchText = null;
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 
   getBookings(propertyID, roomTypeID) {
-    const URL = config.dashboardAPI + '/user/' +
-          this.userID + '/properties/' + propertyID +
-          '/roomTypes/' + roomTypeID + './bookings'
+    const URL =
+      config.dashboardAPI +
+      "/user/" +
+      this.userID +
+      "/properties/" +
+      propertyID +
+      "/roomTypes/" +
+      roomTypeID +
+      "./bookings";
 
     // Make tha call
-    return axios.get(URL, this.headers)
+    return axios.get(URL, this.headers);
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -38,12 +45,18 @@ class Store_Calendar {
   // after it gets the data from the server, to create days array
   // This function calls formatDatesAndRates()
   getRatesWithSpecialDates(propertyID, roomTypeID) {
-    const URL = config.dashboardAPI + '/user/' +
-          this.userID + '/properties/' + propertyID +
-          '/roomTypes/' + roomTypeID + './ratesCalendar'
+    const URL =
+      config.dashboardAPI +
+      "/user/" +
+      this.userID +
+      "/properties/" +
+      propertyID +
+      "/roomTypes/" +
+      roomTypeID +
+      "./ratesCalendar";
 
     // Make tha call
-    return axios.get(URL, this.headers)
+    return axios.get(URL, this.headers);
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -52,18 +65,19 @@ class Store_Calendar {
   getDayDataAndBookings(propertyID, roomTypeID) {
     // Takes an array of functions with ajax calls
     // and makes those calls. Then calls functions below
-    axios.all([
-
-      //this.getBookings(propertyID, roomTypeID),
-      this.getRatesWithSpecialDates(propertyID, roomTypeID)
-
-    ]).then(axios.spread( (ratesWithSpDates) => {
-
-      const { rates, specialDates, error} = ratesWithSpDates.data
-      if (error === 'noErrors')
-          this.formatDatesAndRates(rates, specialDates, roomTypeID)
-      else console.log(error);
-    }));
+    axios
+      .all([
+        //this.getBookings(propertyID, roomTypeID),
+        this.getRatesWithSpecialDates(propertyID, roomTypeID)
+      ])
+      .then(
+        axios.spread(ratesWithSpDates => {
+          const { rates, specialDates, error } = ratesWithSpDates.data;
+          if (error === "noErrors")
+            this.formatDatesAndRates(rates, specialDates, roomTypeID);
+          else console.log(error);
+        })
+      );
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -71,45 +85,44 @@ class Store_Calendar {
   // Creates the days calculating the start and end date of the rate
   // Calls matchDays()
   formatDatesAndRates(rates, specialDates, roomTypeID) {
-
     // Clear array before any calculation
-    this.data.days = []
-    this.data.loading = true
-    this.data.roomTypeID = roomTypeID
+    this.data.days = [];
+    this.data.loading = true;
+    this.data.roomTypeID = roomTypeID;
 
     // Get month of the fisrt rate
     if (rates.length) {
-        this.monthIndex = moment(rates[0].startDate)
-        this.searchText = this.monthIndex.format('MM-YYYY')
+      // this.monthIndex = moment(rates[0].startDate)
+      this.searchText = this.monthIndex.format("MM-YYYY");
     }
 
     // Calculate data for each rate
-    rates.forEach( (rate) => {
-      let { startDate, endDate } = rate
-      startDate = moment(startDate)
-      endDate = moment(endDate)
+    rates.forEach(rate => {
+      let { startDate, endDate } = rate;
+      startDate = moment(startDate);
+      endDate = moment(endDate);
 
-      for (var i = startDate; i <= endDate; i.add(1, 'day')) {
+      for (var i = startDate; i <= endDate; i.add(1, "day")) {
         // Init each days data
         let day = {
           checkInDisallowed: null,
           stopSales: null,
-          date: i.format('ddd DD-MM-YYYY'),
-          dateNonFormat: i.format('YYYY-MM-DD'),
+          date: i.format("ddd DD-MM-YYYY"),
+          dateNonFormat: i.format("YYYY-MM-DD"),
           roomTypeID: roomTypeID,
           alotment: rate.alotment,
           minimumStay: rate.minimumStay,
           releaseRoom: rate.releaseRoom,
           basePlanPrice: rate.basePlanPrice
-        }
+        };
 
         // If day is a special date, calculate accordingly
-        day = this.matchDays(day, specialDates)
+        day = this.matchDays(day, specialDates);
 
         // Push day to the data array
         this.data.days.push(day);
       } // For each day
-    }) // For each rate
+    }); // For each rate
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -117,23 +130,22 @@ class Store_Calendar {
   // Matches dates and special dates to calculate each days values
   // Calls formatSpecialDate()
   matchDays(day, specialDates) {
-    specialDates.forEach( (spDate) => {
+    specialDates.forEach(spDate => {
       // Format date. spDate and specDate are different vars
       const specDate = moment(spDate.date).format("YYYY-MM-DD");
       const specDateEnd = moment(spDate.toDate).format("YYYY-MM-DD");
-      const date = moment(day.dateNonFormat)
+      const date = moment(day.dateNonFormat);
 
       // Check date if between dates of special date
-      if (date.isBetween(specDate, specDateEnd, null, '[]')){
-        day = this.formatSpecialDate(day, spDate)
+      if (date.isBetween(specDate, specDateEnd, null, "[]")) {
+        day = this.formatSpecialDate(day, spDate);
       }
 
-      if (specDate === specDateEnd &&
-          date.format('YYYY-MM-DD') === specDate) {
-            day = this.formatSpecialDate(day, spDate)
+      if (specDate === specDateEnd && date.format("YYYY-MM-DD") === specDate) {
+        day = this.formatSpecialDate(day, spDate);
       }
-    }) // For each
-    return day
+    }); // For each
+    return day;
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -141,8 +153,14 @@ class Store_Calendar {
   // This function formats the data of each day that is a special date
   // If data exists it replaces the data else leaves it as is
   formatSpecialDate(day, specialDate) {
-    const { alotment, minimumStay, checkInDisallowed,
-            basePlanPrice, stopSales, releaseRoom } = specialDate
+    const {
+      alotment,
+      minimumStay,
+      checkInDisallowed,
+      basePlanPrice,
+      stopSales,
+      releaseRoom
+    } = specialDate;
 
     if (alotment) day.alotment = alotment;
     if (minimumStay) day.minimumStay = minimumStay;
@@ -151,7 +169,7 @@ class Store_Calendar {
     if (!checkInDisallowed) day.checkInDisallowed = checkInDisallowed;
     day.stopSales = stopSales;
 
-    return day
+    return day;
   }
 
   // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -159,20 +177,17 @@ class Store_Calendar {
   // Loops through daysWithoutBookings and calculates alotment
   // acording to bookings
   calculateBookings(days, bookingDates) {
-    days.forEach( (day) => {
-      bookingDates.forEach( (booking) => {
-
-        const { checkIn, checkOut } = booking
-        const check = day.date.isBetween(checkIn, checkOut, null, '[]')
-        if (check) day.alotment--
-
-      }) // bookingDates
-    }) // daysWithoutBookings
+    days.forEach(day => {
+      bookingDates.forEach(booking => {
+        const { checkIn, checkOut } = booking;
+        const check = day.date.isBetween(checkIn, checkOut, null, "[]");
+        if (check) day.alotment--;
+      }); // bookingDates
+    }); // daysWithoutBookings
   }
-
 }
 
 // ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 // export the store
-var store_Calendar = new Store_Calendar
-export default store_Calendar
+var store_Calendar = new Store_Calendar();
+export default store_Calendar;
