@@ -4,7 +4,7 @@ import { observable } from "mobx";
 import config from "../../sharedFiles/Config.jsx";
 
 class Store_RoomTypes {
-  @observable roomType = {}; // One room type
+  @observable roomType = { id: "" }; // One room type
   @observable roomTypes = []; // All room types
 
   //＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
@@ -26,8 +26,10 @@ class Store_RoomTypes {
     })
       .then(response => {
         const { error, roomTypes, message } = response.data;
-        if (error === "noErrors") this.roomTypes = roomTypes;
-        else $.notify(message, "error");
+        if (error === "noErrors") {
+          this.roomTypes = roomTypes;
+          this.roomType = roomTypes[0];
+        } else $.notify(message, "error");
       })
       .catch(error => $.notify(error, "error"));
   }

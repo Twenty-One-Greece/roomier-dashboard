@@ -25,6 +25,7 @@ class SelectRoom extends React.Component {
   handleRoomChange(e) {
     const roomTypeID = e.target.value;
     const { propertyID, store_Calendar } = this.props;
+    store_RoomTypes.roomType.id = roomTypeID;
     store_Calendar.getDayDataAndBookings(propertyID, roomTypeID);
   }
 
@@ -36,10 +37,11 @@ class SelectRoom extends React.Component {
 
     // When rooms have been returned from the server
     if (roomTypes.length) {
-      const roomTypeID = roomTypes[0].id;
+      const roomTypeID =
+        (store_RoomTypes.roomType && store_RoomTypes.roomType.id) ||
+        roomTypes[0].id;
       getFirstRoomData(propertyID, roomTypeID);
     }
-
     // Create select input
     this.options = roomTypes.map(roomType => {
       return (
@@ -50,12 +52,16 @@ class SelectRoom extends React.Component {
     });
 
     return (
-      <select
-        onChange={this.handleRoomChange}
-        className="form-control sel-room"
-      >
-        {this.options}
-      </select>
+      <div>
+        {store_RoomTypes.roomType && store_RoomTypes.roomType.id}
+        <select
+          value={store_RoomTypes.roomType.id}
+          onChange={this.handleRoomChange}
+          className="form-control sel-room"
+        >
+          {this.options}
+        </select>
+      </div>
     );
   }
 }
